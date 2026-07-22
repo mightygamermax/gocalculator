@@ -1,35 +1,30 @@
-// =========================
-// Go Calculator
-// Version 1.0
-// =========================
+// Dark Mode Toggle
+const themeBtn = document.getElementById("themeBtn");
 
-console.log("🚀 Go Calculator Started");
+themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
 
-// Search Box
-const searchBox = document.querySelector("input");
+    if (document.body.classList.contains("dark")) {
+        themeBtn.textContent = "☀️";
+    } else {
+        themeBtn.textContent = "🌙";
+    }
+});
+
+// Search Function
+const searchInput = document.getElementById("searchInput");
 const cards = document.querySelectorAll(".card");
 
-searchBox.addEventListener("keyup", function () {
-    const value = this.value.toLowerCase();
+searchInput.addEventListener("keyup", () => {
+    const value = searchInput.value.toLowerCase();
 
     cards.forEach(card => {
-        const text = card.innerText.toLowerCase();
+        const title = card.querySelector("h3").textContent.toLowerCase();
 
-        if (text.includes(value)) {
+        if (title.includes(value)) {
             card.style.display = "block";
         } else {
             card.style.display = "none";
         }
-    });
-});
-
-// Card Click Animation
-cards.forEach(card => {
-    card.addEventListener("click", () => {
-        card.style.transform = "scale(0.97)";
-
-        setTimeout(() => {
-            card.style.transform = "";
-        }, 150);
     });
 });
